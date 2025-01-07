@@ -1,13 +1,12 @@
 "use client"
 
-import { motion } from "framer-motion"
-import Image from "next/image"
-import { useTypewriter } from "@/hooks/useTypewriter"
 import { Button } from "@/components/ui/button"
+import { useTypewriter } from "@/hooks/useTypewriter"
+import { motion } from "framer-motion"
 import { ArrowUpRight, FileText } from "lucide-react"
-import Link from "next/link"
-import { SectionWrapper } from "./section-wrapper"
+import Image from "next/image"
 import { usePathname } from 'next/navigation'
+import { SectionWrapper } from "./section-wrapper"
 
 const BackgroundGradient = () => (
   <div className="absolute inset-0 -z-10">
