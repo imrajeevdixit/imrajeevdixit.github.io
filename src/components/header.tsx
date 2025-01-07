@@ -20,9 +20,16 @@ const NavLink = ({ href, children, onClick }: {
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (href.startsWith('#')) {
       e.preventDefault()
-      const element = document.querySelector(href)
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' })
+      
+      // If we're not on the home page, navigate to home first
+      if (pathname !== '/') {
+        window.location.href = `/${href}`
+      } else {
+        // If we're already on home page, just scroll
+        const element = document.querySelector(href)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
       }
       onClick?.()
     }
@@ -30,7 +37,7 @@ const NavLink = ({ href, children, onClick }: {
 
   return (
     <Link 
-      href={href}
+      href={href.startsWith('#') && pathname !== '/' ? `/${href}` : href}
       className="relative text-sm group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
