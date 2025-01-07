@@ -34,7 +34,7 @@ export default function Hero() {
 
   return (
     <SectionWrapper index={0}>
-      <div className="relative min-h-[80vh] pt-32 px-8 sm:px-16 lg:px-32 flex items-center overflow-hidden">
+      <div className="relative h-screen px-8 sm:px-16 lg:px-32 flex items-center overflow-hidden">
         <BackgroundGradient />
         
         <motion.div 
@@ -65,7 +65,7 @@ export default function Hero() {
                 transition={{ duration: 0.5 }}
               >
                 <Button asChild className="group">
-                  <a href="public/resume.pdf" target="_blank" rel="noopener noreferrer">
+                  <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
                     <FileText className="mr-2 h-4 w-4" />
                     My Resume
                     <ArrowUpRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -90,7 +90,7 @@ export default function Hero() {
             >
               <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-full blur-2xl animate-pulse" />
               <motion.div 
-                className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-primary/20"
+                className="relative w-72 h-72 rounded-full overflow-hidden border-4 border-primary/20"
                 animate={{ 
                   scale: [1, 1.02, 1],
                   rotate: [0, 1, -1, 0]
@@ -102,10 +102,10 @@ export default function Hero() {
                 }}
               >
                 <Image
-                  src="public/images/profile1.png"
+                  src="/images/profile.png"
                   alt="Rajeev Dixit"
                   fill
-                  className="object-cover"
+                  className="object-cover object-top"
                   priority
                 />
               </motion.div>

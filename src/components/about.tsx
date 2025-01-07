@@ -13,6 +13,8 @@ const colors = [
   "from-rose-500 to-red-400",
   "from-indigo-500 to-violet-400",
   "from-teal-500 to-cyan-400",
+  "from-amber-500 to-yellow-400",
+  "from-sky-500 to-blue-400"
 ]
 
 export default function About() {
@@ -23,7 +25,9 @@ export default function About() {
     "Harnessing the Cloud",
     "Data-Driven Insights",
     "Guiding Future Engineers",
-    "Mentorship & Growth"
+    "Mentorship & Growth",
+    "SaaS Enthusiast",
+    "Engineering Leadership"
   ]
 
   const focusText = useTypewriter(
@@ -34,7 +38,8 @@ export default function About() {
   return (
     <SectionWrapper index={1}>
       <motion.section 
-        className="min-h-screen flex items-center px-8 sm:px-16 lg:px-32"
+        id="about"
+        className="h-screen flex items-center px-8 sm:px-16 lg:px-32"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.5 }}

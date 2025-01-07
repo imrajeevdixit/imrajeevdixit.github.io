@@ -41,7 +41,8 @@ export default function Contact() {
   return (
     <SectionWrapper index={2}>
       <motion.section 
-        className="min-h-screen flex items-center px-8 sm:px-16 lg:px-32"
+        id="contact"
+        className="h-screen flex items-center px-8 sm:px-16 lg:px-32"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
