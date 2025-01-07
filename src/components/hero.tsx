@@ -5,7 +5,6 @@ import { useTypewriter } from "@/hooks/useTypewriter"
 import { motion } from "framer-motion"
 import { ArrowUpRight, FileText } from "lucide-react"
 import Image from "next/image"
-import { usePathname } from 'next/navigation'
 import { SectionWrapper } from "./section-wrapper"
 
 const BackgroundGradient = () => (
@@ -20,7 +19,6 @@ const BackgroundGradient = () => (
 const highlightGradient = "bg-gradient-to-r from-yellow-500 via-yellow-500/80 to-yellow-500/50 dark:from-yellow-500 dark:via-yellow-500/80 dark:to-yellow-500/50 bg-clip-text text-transparent font-bold"
 
 export default function Hero() {
-  const pathname = usePathname()
 
   const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
