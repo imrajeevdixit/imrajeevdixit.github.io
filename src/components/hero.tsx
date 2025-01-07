@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowUpRight, FileText } from "lucide-react"
 import Link from "next/link"
 import { SectionWrapper } from "./section-wrapper"
+import { usePathname } from 'next/navigation'
 
 const BackgroundGradient = () => (
   <div className="absolute inset-0 -z-10">
@@ -20,6 +21,17 @@ const BackgroundGradient = () => (
 const highlightGradient = "bg-gradient-to-r from-yellow-500 via-yellow-500/80 to-yellow-500/50 dark:from-yellow-500 dark:via-yellow-500/80 dark:to-yellow-500/50 bg-clip-text text-transparent font-bold"
 
 export default function Hero() {
+  const pathname = usePathname()
+
+  const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    
+    const element = document.querySelector('#contact')
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   const greeting = useTypewriter("Hello there!", {
     speed: 50,
     delay: 0,
@@ -34,7 +46,7 @@ export default function Hero() {
 
   return (
     <SectionWrapper index={0}>
-      <div className="relative h-screen px-8 sm:px-16 lg:px-32 flex items-center overflow-hidden">
+      <div id="hero" className="relative h-screen px-8 sm:px-16 lg:px-32 flex items-center overflow-hidden">
         <BackgroundGradient />
         
         <motion.div 
@@ -72,10 +84,14 @@ export default function Hero() {
                   </a>
                 </Button>
                 <Button asChild variant="outline">
-                  <Link href="/contact" className="group">
+                  <a 
+                    href="#contact" 
+                    className="group"
+                    onClick={handleContactClick}
+                  >
                     Get in Touch
                     <ArrowUpRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                  </Link>
+                  </a>
                 </Button>
               </motion.div>
             </div>

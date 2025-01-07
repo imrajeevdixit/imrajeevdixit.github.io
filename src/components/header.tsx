@@ -65,9 +65,35 @@ const NavLink = ({ href, children, onClick }: {
 export function Header() {
   const { theme, setTheme } = useTheme()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const pathname = usePathname()
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
   const closeMenu = () => setIsMenuOpen(false)
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    
+    if (pathname !== '/') {
+      // If not on home page, navigate to home
+      window.location.href = '/'
+    } else {
+      // If on home page, scroll to top with animation
+      const heroSection = document.querySelector('#hero')
+      if (heroSection) {
+        heroSection.scrollIntoView({ behavior: 'smooth' })
+      } else {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        })
+      }
+    }
+    
+    // Close mobile menu if open
+    if (isMenuOpen) {
+      closeMenu()
+    }
+  }
 
   return (
     <motion.header
@@ -77,7 +103,11 @@ export function Header() {
       className="fixed top-0 left-0 right-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
     >
       <div className="container flex h-16 max-w-screen-2xl items-center justify-between px-8">
-        <Link href="/" className="text-3xl font-bold">
+        <Link 
+          href="/"
+          className="text-3xl font-bold"
+          onClick={handleLogoClick}
+        >
           RD
         </Link>
         

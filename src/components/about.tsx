@@ -39,7 +39,7 @@ export default function About() {
     <SectionWrapper index={1}>
       <motion.section 
         id="about"
-        className="h-screen flex items-center px-8 sm:px-16 lg:px-32"
+        className="min-h-screen flex flex-col justify-center px-8 sm:px-16 lg:px-32 py-16 md:py-0"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
@@ -47,7 +47,15 @@ export default function About() {
       >
         <div className="max-w-screen-xl mx-auto w-full">
           <div className="space-y-8">
-            <h2 className="text-3xl font-bold">WHAT I DO</h2>
+            <motion.h2 
+              className="text-3xl font-bold"
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              WHAT I DO
+            </motion.h2>
             <motion.p 
               className="text-xl text-zinc-400"
               initial={{ opacity: 0 }}
