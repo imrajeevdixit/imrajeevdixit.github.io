@@ -109,16 +109,26 @@ export function Header() {
       </div>
 
       {isMobileMenuOpen && (
-        <div className={`md:hidden absolute top-full left-0 w-full ${themeClasses.bgSecondary} border-b ${themeClasses.border} p-6 flex flex-col gap-4 shadow-xl`}>
+        <div className={`md:hidden absolute top-full left-0 w-full ${themeClasses.bgSecondary} border-b ${themeClasses.border} p-6 flex flex-col gap-4 shadow-xl backdrop-blur-md`}>
           {navLinks.map((link) => (
             <button
               key={link.name}
               onClick={() => scrollToSection(link.id)}
-              className={`text-left text-lg font-medium ${themeClasses.textMain} ${themeClasses.accentHover}`}
+              className={`text-left text-lg font-medium ${themeClasses.textMain} ${themeClasses.accentHover} transition-colors`}
             >
               {link.name}
             </button>
           ))}
+          
+          {/* Resume Link */}
+          <a 
+            href="/resume" 
+            className={`text-left text-lg font-medium text-indigo-500 border-t ${themeClasses.border} pt-4 ${themeClasses.accentHover} transition-colors flex items-center gap-2`}
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            <span>Resume</span>
+            <span className="text-xs px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-500">View</span>
+          </a>
         </div>
       )}
     </nav>
