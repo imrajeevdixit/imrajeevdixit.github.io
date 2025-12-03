@@ -18,7 +18,7 @@ const SUGGESTED_QUESTIONS = [
 ]
 
 export default function AIWorkbenchFloater() {
-  const { theme } = useTheme()
+  const { theme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const [isMinimized, setIsMinimized] = useState(false)
@@ -26,7 +26,7 @@ export default function AIWorkbenchFloater() {
   const [input, setInput] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
-  const isDark = theme === 'dark'
+  const isDark = (resolvedTheme || theme) === 'dark'
 
   useEffect(() => {
     setMounted(true)
@@ -34,14 +34,16 @@ export default function AIWorkbenchFloater() {
 
   useEffect(() => {
     if (isOpen && messages.length === 0) {
-      // Welcome message
-      setMessages([{
-        role: 'assistant',
-        content: "Hello! I'm an AI assistant. Ask me anything about Rajeev!",
-        timestamp: new Date()
-      }])
+      // Add welcome message immediately when opened
+      setTimeout(() => {
+        setMessages([{
+          role: 'assistant',
+          content: "Hello! I'm an AI assistant. Ask me anything about Rajeev!",
+          timestamp: new Date()
+        }])
+      }, 100) // Small delay to ensure rendering
     }
-  }, [isOpen, messages.length])
+  }, [isOpen])
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -113,21 +115,23 @@ export default function AIWorkbenchFloater() {
       )}
 
       {/* Chat Window */}
-      {isOpen && (
+      {isOpen && mounted && (
         <div 
-          className={`fixed ${isMinimized ? 'bottom-6 right-6 w-80' : 'bottom-6 right-6 w-[420px]'} ${isDark ? 'bg-slate-950 border-slate-800' : 'bg-white border-slate-200'} rounded-2xl border shadow-2xl z-50 transition-all duration-300 overflow-hidden`}
+          key="chatbot-window"
+          className={`fixed ${isMinimized ? 'bottom-6 right-6 w-80' : 'bottom-6 right-6 w-[420px]'} ${isDark ? 'bg-slate-950 border-slate-800' : 'bg-white border-slate-200'} rounded-2xl border shadow-2xl z-50 transition-all duration-300`}
           style={{
             maxHeight: isMinimized ? '60px' : '600px',
+            overflow: 'hidden'
           }}
         >
-          {/* Header */}
-          <div className={`flex items-center justify-between p-4 border-b ${isDark ? 'border-slate-800 bg-slate-900' : 'border-slate-200 bg-slate-50'}`}>
-            <div className="flex items-center gap-3">
-              <div className={`p-2 rounded-full ${isDark ? 'bg-indigo-500/10' : 'bg-indigo-100'} animate-pulse`}>
-                <Bot className="text-indigo-500" size={20} />
+          {/* Header - Always visible */}
+          <div className={`flex items-center justify-between px-4 py-3 border-b ${isDark ? 'border-slate-800 bg-slate-900' : 'border-slate-200 bg-slate-50'} flex-shrink-0`}>
+            <div className="flex items-center gap-3 flex-1 pr-2 min-w-0">
+              <div className={`p-2 rounded-full ${isDark ? 'bg-indigo-500/10' : 'bg-indigo-100'} flex-shrink-0`}>
+                <Bot className="text-indigo-500" size={18} />
               </div>
-              <div>
-                <h3 className={`font-semibold ${isDark ? 'text-slate-100' : 'text-slate-900'}`}>
+              <div className="min-w-0 flex-1">
+                <h3 className={`font-semibold text-sm ${isDark ? 'text-slate-100' : 'text-slate-900'}`}>
                   AI Assistant
                 </h3>
                 <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
@@ -135,20 +139,22 @@ export default function AIWorkbenchFloater() {
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 flex-shrink-0 ml-3">
               <button
                 onClick={() => setIsMinimized(!isMinimized)}
-                className={`p-2 rounded-lg ${isDark ? 'hover:bg-slate-800' : 'hover:bg-slate-100'} transition-colors`}
+                className={`p-2 rounded-lg ${isDark ? 'bg-slate-800 text-slate-100 hover:bg-slate-700' : 'bg-slate-100 text-slate-900 hover:bg-slate-200'} transition-all hover:scale-110 active:scale-95 shadow-sm`}
                 aria-label={isMinimized ? "Maximize" : "Minimize"}
+                title={isMinimized ? "Maximize" : "Minimize"}
               >
-                {isMinimized ? <Maximize2 size={18} /> : <Minimize2 size={18} />}
+                {isMinimized ? <Maximize2 size={18} strokeWidth={2.5} /> : <Minimize2 size={18} strokeWidth={2.5} />}
               </button>
               <button
                 onClick={() => setIsOpen(false)}
-                className={`p-2 rounded-lg ${isDark ? 'hover:bg-slate-800' : 'hover:bg-slate-100'} transition-colors`}
+                className={`p-2 rounded-lg ${isDark ? 'bg-slate-800 text-slate-100 hover:bg-red-900 hover:text-red-300' : 'bg-slate-100 text-slate-900 hover:bg-red-100 hover:text-red-600'} transition-all hover:scale-110 active:scale-95 shadow-sm`}
                 aria-label="Close"
+                title="Close"
               >
-                <X size={18} />
+                <X size={18} strokeWidth={2.5} />
               </button>
             </div>
           </div>
@@ -156,7 +162,8 @@ export default function AIWorkbenchFloater() {
           {!isMinimized && (
             <>
               {/* Chat Messages */}
-              <div className={`h-[400px] overflow-y-auto p-4 space-y-3 ${isDark ? 'bg-slate-900/50' : 'bg-slate-50/50'}`}>
+              <div className={`h-[340px] overflow-y-auto p-4 ${isDark ? 'bg-slate-900/50' : 'bg-slate-50/50'}`}>
+                <div className={`${messages.length <= 2 ? 'flex flex-col justify-center min-h-full' : ''} space-y-3`}>
                 {messages.map((message, index) => (
                   <div
                     key={index}
@@ -198,21 +205,22 @@ export default function AIWorkbenchFloater() {
                     </div>
                   </div>
                 )}
+                </div>
                 <div ref={messagesEndRef} />
               </div>
 
-              {/* Suggested Questions */}
+              {/* Suggested Questions - Compact */}
               {messages.length === 1 && (
-                <div className={`px-4 py-3 border-t ${isDark ? 'border-slate-800 bg-slate-900/30' : 'border-slate-200 bg-slate-50'}`}>
-                  <p className={`text-xs font-medium ${isDark ? 'text-slate-400' : 'text-slate-600'} mb-2`}>
-                    Suggested questions:
+                <div className={`px-4 py-2 border-t ${isDark ? 'border-slate-800 bg-slate-900/30' : 'border-slate-200 bg-slate-50'} max-h-24 overflow-y-auto`}>
+                  <p className={`text-xs font-medium ${isDark ? 'text-slate-400' : 'text-slate-600'} mb-1.5`}>
+                    Quick asks:
                   </p>
                   <div className="flex flex-wrap gap-1.5">
                     {SUGGESTED_QUESTIONS.map((question, index) => (
                       <button
                         key={index}
                         onClick={() => handleSuggestedQuestion(question)}
-                        className={`text-xs px-2.5 py-1.5 rounded-lg ${isDark ? 'bg-slate-800 text-slate-300 hover:bg-slate-700 border-slate-700' : 'bg-white text-slate-600 hover:bg-slate-50 border-slate-200'} border transition-all hover:scale-105 hover:border-indigo-500/50`}
+                        className={`text-xs px-2 py-1 rounded-md ${isDark ? 'bg-slate-800 text-slate-300 hover:bg-slate-700 border-slate-700' : 'bg-white text-slate-600 hover:bg-slate-50 border-slate-200'} border transition-all hover:border-indigo-500/50 whitespace-nowrap`}
                       >
                         {question}
                       </button>
@@ -222,7 +230,7 @@ export default function AIWorkbenchFloater() {
               )}
 
               {/* Input Form */}
-              <form onSubmit={handleSubmit} className={`p-4 border-t ${isDark ? 'border-slate-800' : 'border-slate-200'}`}>
+              <form onSubmit={handleSubmit} className={`p-3 border-t ${isDark ? 'border-slate-800' : 'border-slate-200'}`}>
                 <div className="flex gap-2">
                   <input
                     type="text"
@@ -235,12 +243,12 @@ export default function AIWorkbenchFloater() {
                   <button
                     type="submit"
                     disabled={!input.trim() || isLoading}
-                    className="px-4 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-all hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center gap-2"
+                    className="px-3 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-all hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center gap-2"
                   >
                     {isLoading ? (
-                      <Loader2 className="animate-spin" size={18} />
+                      <Loader2 className="animate-spin" size={16} />
                     ) : (
-                      <Send size={18} />
+                      <Send size={16} />
                     )}
                   </button>
                 </div>
