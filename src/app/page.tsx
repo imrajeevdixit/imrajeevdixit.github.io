@@ -4,6 +4,7 @@ import Hero from "@/components/hero"
 import Experience from "@/components/experience"
 import Skills from "@/components/skills"
 import Leadership from "@/components/leadership"
+import AIWorkbenchFloater from "@/components/ai-workbench-floater"
 import Contact from "@/components/contact"
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
         <Leadership />
       </main>
       <Contact />
+      <AIWorkbenchFloater />
     </div>
   )
 }
