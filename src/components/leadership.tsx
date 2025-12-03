@@ -17,6 +17,9 @@ export default function Leadership() {
 
   if (!mounted) return null;
 
+  const leadershipQuote =
+    "Spearheaded high-performing engineering teams across global locations, cultivating a collaborative environment that prioritized continuous learning.";
+
   return (
     <section className="py-24 px-6 max-w-6xl mx-auto relative z-10">
       <FadeInSection>
@@ -41,7 +44,7 @@ export default function Leadership() {
             </div>
 
             <div className={`mt-10 pt-8 border-t ${isDark ? 'border-slate-800' : 'border-slate-200'} text-center ${isDark ? 'text-slate-400' : 'text-slate-500'} text-sm italic`}>
-              &quot;Spearheaded high-performing engineering teams across global locations, cultivating a collaborative environment that prioritized continuous learning.&quot;
+              {`"${leadershipQuote}"`}
             </div>
           </div>
         </div>
