@@ -58,8 +58,9 @@ export default {
   		},
   		keyframes: {
   			gradient: {
-  				'0%, 100%': { backgroundPosition: '0% 50%' },
+  				'0%': { backgroundPosition: '0% 50%' },
   				'50%': { backgroundPosition: '100% 50%' },
+  				'100%': { backgroundPosition: '0% 50%' }
   			},
   			blob: {
   				'0%, 100%': { transform: 'translate(0, 0) scale(1)' },
@@ -69,7 +70,7 @@ export default {
   			},
   		},
   		animation: {
-  			gradient: 'gradient 15s ease infinite',
+  			gradient: 'gradient 8s ease infinite',
   			blob: 'blob 10s infinite',
   		},
   	}
