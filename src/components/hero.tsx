@@ -211,7 +211,7 @@ export default function Hero() {
               className="group relative px-8 py-3 bg-indigo-600 text-white rounded-lg font-medium overflow-hidden transition-all hover:scale-105 active:scale-95 animate-shimmer inline-block"
             >
               <span className="relative z-10 flex items-center gap-2">
-                Let's connect
+                Let&apos;s connect
                 <Sparkles className="w-4 h-4 group-hover:rotate-12 transition-transform" />
               </span>
               <span className="absolute inset-0 bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 bg-[length:200%_100%] animate-gradient-slow opacity-0 group-hover:opacity-100 transition-opacity"></span>

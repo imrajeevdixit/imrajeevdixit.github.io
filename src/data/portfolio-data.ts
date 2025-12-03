@@ -1,9 +1,10 @@
-import { Linkedin, Github, Mail, Phone, Rss, Calendar } from 'lucide-react';
+import { Linkedin, Github, Mail, Phone } from 'lucide-react';
+import { BeehiivIcon } from '@/components/beehiiv-icon';
 
 export const socialLinks = [
   { icon: Linkedin, href: "https://www.linkedin.com/in/imrajeevdixit/", label: "LinkedIn" },
   { icon: Github, href: "https://github.com/imrajeevdixit", label: "Github" },
-  { icon: Rss, href: "https://theheuristicreport.beehiiv.com/", label: "Newsletter" },
+  { icon: BeehiivIcon, href: "https://theheuristicreport.beehiiv.com/", label: "Newsletter" },
   { icon: Mail, href: "mailto:rajeevdixit05@outlook.com", label: "Email" },
   { icon: Phone, href: "tel:+919460121450", label: "Phone" },
 ];

@@ -43,7 +43,7 @@ export default function AIWorkbenchFloater() {
         }])
       }, 100) // Small delay to ensure rendering
     }
-  }, [isOpen])
+  }, [isOpen, messages.length])
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
