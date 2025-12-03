@@ -198,24 +198,26 @@ export default function Hero() {
 
         <FadeInSection delay={200}>
           <p className={`text-lg md:text-xl ${isDark ? 'text-slate-400' : 'text-slate-500'} max-w-2xl mb-10 leading-relaxed hover:text-slate-300 transition-colors duration-300`}>
-            Over a decade of experience bridging the gap between resilient distributed systems and the future of Generative AI and Autonomous Workflows. I align technical strategy with business velocity to build the next generation of platforms.
+            Over a decade of experience bridging the gap between resilient distributed systems, the future of Generative AI and Autonomous Workflows. I align technical strategy with business velocity to build the next generation of platforms.
           </p>
         </FadeInSection>
 
         <FadeInSection delay={300}>
           <div className="flex flex-wrap gap-4">
-            <button
-              onClick={() => scrollToSection('contact')}
-              className="group relative px-8 py-3 bg-indigo-600 text-white rounded-lg font-medium overflow-hidden transition-all hover:scale-105 active:scale-95 animate-shimmer"
+            <a
+              href="https://topmate.io/imrajeevdixit"
+              target="_blank"
+              rel="noreferrer"
+              className="group relative px-8 py-3 bg-indigo-600 text-white rounded-lg font-medium overflow-hidden transition-all hover:scale-105 active:scale-95 animate-shimmer inline-block"
             >
               <span className="relative z-10 flex items-center gap-2">
-                Get in Touch
+                Let's connect
                 <Sparkles className="w-4 h-4 group-hover:rotate-12 transition-transform" />
               </span>
               <span className="absolute inset-0 bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 bg-[length:200%_100%] animate-gradient-slow opacity-0 group-hover:opacity-100 transition-opacity"></span>
               <span className="absolute inset-0 shadow-lg shadow-indigo-500/50 opacity-0 group-hover:opacity-100 transition-opacity"></span>
               <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
-            </button>
+            </a>
             <button
               onClick={() => scrollToSection('experience')}
               className={`group px-8 py-3 ${isDark ? 'bg-slate-800 text-slate-200 border-slate-700 hover:border-indigo-500/50' : 'bg-white text-slate-700 border-slate-200 shadow-sm hover:border-indigo-300'} rounded-lg font-medium transition-all border hover:scale-105 active:scale-95 hover:shadow-lg relative overflow-hidden`}
