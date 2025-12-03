@@ -3,7 +3,8 @@
 import { experienceData, skillsData } from "@/data/portfolio-data"
 import { useTheme } from "next-themes"
 import { useState, useEffect } from "react"
-import { Download, Mail, Phone, Linkedin, Github, Rss, Sun, Moon } from "lucide-react"
+import { Download, Mail, Phone, Linkedin, Github, Sun, Moon } from "lucide-react"
+import { BeehiivIcon } from "@/components/beehiiv-icon"
 
 export default function ResumePage() {
   const { theme, setTheme } = useTheme()
@@ -73,7 +74,7 @@ export default function ResumePage() {
                 rel="noreferrer"
                 className="flex items-center gap-2 hover:text-indigo-500 transition-colors"
               >
-                <Rss size={16} />
+                <BeehiivIcon size={16} />
                 theheuristicreport.beehiiv.com
               </a>
             </div>
