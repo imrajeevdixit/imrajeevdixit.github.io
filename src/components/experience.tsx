@@ -38,7 +38,18 @@ export default function Experience() {
               <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
                 <div>
                   <h3 className={`text-xl font-bold ${isDark ? 'text-slate-100' : 'text-slate-900'} group-hover:text-indigo-500 transition-colors`}>{job.role}</h3>
-                  <div className="text-lg text-indigo-500">{job.company}</div>
+                  {job.companyUrl ? (
+                    <a
+                      href={job.companyUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-lg text-indigo-500 hover:text-indigo-400 transition-colors underline decoration-indigo-500/30 hover:decoration-indigo-400"
+                    >
+                      {job.company}
+                    </a>
+                  ) : (
+                    <div className="text-lg text-indigo-500">{job.company}</div>
+                  )}
                 </div>
                 <div className={`text-sm font-mono ${isDark ? 'text-slate-400 bg-slate-900 border-slate-800' : 'text-slate-500 bg-slate-100 border-slate-200'} px-3 py-1 rounded-full border w-fit`}>
                   {job.period}

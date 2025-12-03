@@ -4,12 +4,15 @@ import { useTheme } from 'next-themes'
 import { Sun, Moon, Menu, X } from 'lucide-react'
 import { navLinks } from '@/data/portfolio-data'
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 
 export function Header() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     setMounted(true)
@@ -21,6 +24,9 @@ export function Header() {
   }, [])
 
   if (!mounted) return null
+
+  // Hide header on resume page
+  if (pathname === '/resume') return null
 
   const isDark = theme === 'dark'
 
@@ -71,9 +77,22 @@ export function Header() {
             {isDark ? <Sun size={20} /> : <Moon size={20} />}
           </button>
 
-          <button className={`px-4 py-2 text-sm font-medium text-indigo-500 border border-indigo-500/30 rounded-full ${isDark ? 'hover:bg-indigo-500/10' : 'hover:bg-indigo-50'} transition-all hover:scale-105 active:scale-95`}>
-            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
-          </button>
+          <a href="/resume" className={`px-4 py-2 text-sm font-medium text-indigo-500 border border-indigo-500/30 rounded-full ${isDark ? 'hover:bg-indigo-500/10' : 'hover:bg-indigo-50'} transition-all hover:scale-105 active:scale-95`}>
+            Resume
+          </a>
+
+          <div className="relative w-12 h-12 ml-4">
+            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-full blur-md animate-pulse"></div>
+            <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-indigo-500/30 shadow-lg hover:scale-110 transition-transform duration-300">
+              <Image
+                src="/images/profile.png"
+                alt="Rajeev Dixit"
+                fill
+                className="object-cover object-top"
+                priority
+              />
+            </div>
+          </div>
         </div>
 
         <div className="md:hidden flex items-center gap-4">
