@@ -95,11 +95,11 @@ export default function Leadership() {
             <FadeInSection delay={600}>
               <div className={`mt-10 pt-8 border-t ${isDark ? 'border-slate-800' : 'border-slate-200'} relative`}>
                 <div className="flex items-start gap-4">
-                  <div className={`text-6xl ${isDark ? 'text-indigo-500/20' : 'text-indigo-300'} leading-none`}>"</div>
+                  <div className={`text-6xl ${isDark ? 'text-indigo-500/20' : 'text-indigo-300'} leading-none`}>&ldquo;</div>
                   <p className={`flex-1 text-center ${isDark ? 'text-slate-400' : 'text-slate-600'} text-base italic hover:text-indigo-500 transition-colors duration-300 py-2`}>
                     {leadershipQuote}
                   </p>
-                  <div className={`text-6xl ${isDark ? 'text-indigo-500/20' : 'text-indigo-300'} leading-none self-end`}>"</div>
+                  <div className={`text-6xl ${isDark ? 'text-indigo-500/20' : 'text-indigo-300'} leading-none self-end`}>&rdquo;</div>
                 </div>
               </div>
             </FadeInSection>
