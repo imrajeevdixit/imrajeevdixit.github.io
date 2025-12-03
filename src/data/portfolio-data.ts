@@ -1,8 +1,9 @@
-import { Linkedin, Github, Mail, Phone } from 'lucide-react';
+import { Linkedin, Github, Mail, Phone, Rss } from 'lucide-react';
 
 export const socialLinks = [
   { icon: Linkedin, href: "https://www.linkedin.com/in/imrajeevdixit/", label: "LinkedIn" },
   { icon: Github, href: "https://github.com/imrajeevdixit", label: "Github" },
+  { icon: Rss, href: "https://theheuristicreport.beehiiv.com/", label: "Newsletter" },
   { icon: Mail, href: "mailto:rajeevdixit05@outlook.com", label: "Email" },
   { icon: Phone, href: "tel:+919460121450", label: "Phone" },
 ];
@@ -38,33 +39,45 @@ export const skillsData = {
 export const experienceData = [
   {
     company: "ClearRoute",
+    companyUrl: "https://www.clearroute.io/",
     role: "Cloud Architect",
     period: "Mar 2025 - Present",
     desc: "Driving Cloud, Platform Engineering, and Developer Experience initiatives. Guiding teams through large-scale modernization at a global platform engineering consultancy."
   },
   {
     company: "Truworth Wellness",
+    companyUrl: "https://www.truworthwellness.com/",
     role: "Engineering Manager",
     period: "Oct 2024 - Mar 2025",
     desc: "Led Health & Wellness Platform engineering, focusing on scalable architecture, performance management, and observability pipelines."
   },
   {
     company: "PhonePe",
+    companyUrl: "https://www.phonepe.com/",
     role: "Engineering Lead / Manager",
     period: "Sep 2022 - Sep 2024",
     desc: "Managed Payment Gateway & Insurance Aggregator Platform initiatives."
   },
   {
     company: "Myntra",
+    companyUrl: "https://www.myntra.com/",
     role: "Technical Lead",
     period: "Nov 2019 - Sep 2022",
-    desc: "Fashion E-Commerce Platform (Flipkart-Walmart Group)."
+    desc: "Led backend engineering and cross-functional teams building scalable microservices at India's leading fashion e-commerce platform."
   },
   {
     company: "Citrix R&D",
+    companyUrl: "https://www.citrix.com/",
     role: "Software Engineer",
     period: "Apr 2016 - Oct 2019",
-    desc: "Enterprise Mobility Management Platform."
+    desc: "Developed full-stack features and backend services for Enterprise Mobility Management Platform."
+  },
+  {
+    company: "UrbanPro.com",
+    companyUrl: "https://www.urbanpro.com/",
+    role: "Software Developer",
+    period: "Jun 2015 - Apr 2016",
+    desc: "Developed user interfaces and robust APIs for mobile application development."
   }
 ];
 

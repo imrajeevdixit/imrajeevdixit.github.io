@@ -4,8 +4,6 @@ import { FadeInSection } from "@/components/fade-in-section"
 import { socialLinks } from "@/data/portfolio-data"
 import { useTheme } from "next-themes"
 import { useState, useEffect } from "react"
-import Image from "next/image"
-
 export default function Hero() {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
