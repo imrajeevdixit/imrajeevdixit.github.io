@@ -3,6 +3,7 @@
 import { useTheme } from "next-themes"
 import { useState, useEffect, useRef } from "react"
 import { Bot, Send, X, Sparkles, Loader2, User, Minimize2, Maximize2 } from "lucide-react"
+import { clientLogger } from "@/lib/logger"
 
 interface Message {
   role: 'user' | 'assistant'
@@ -34,6 +35,7 @@ export default function AIWorkbenchFloater() {
 
   useEffect(() => {
     if (isOpen && messages.length === 0) {
+      clientLogger.info('[AI Chatbot] Chatbot opened - initializing welcome message')
       // Add welcome message immediately when opened
       setTimeout(() => {
         setMessages([{
@@ -55,9 +57,17 @@ export default function AIWorkbenchFloater() {
     e.preventDefault()
     if (!input.trim() || isLoading) return
 
+    const messageText = input.trim()
+    const startTime = Date.now()
+    
+    clientLogger.info('[AI Chatbot] Sending message', { 
+      messagePreview: messageText.substring(0, 100),
+      messageLength: messageText.length 
+    })
+
     const userMessage: Message = {
       role: 'user',
-      content: input.trim(),
+      content: messageText,
       timestamp: new Date()
     }
 
@@ -66,15 +76,34 @@ export default function AIWorkbenchFloater() {
     setIsLoading(true)
 
     try {
+      clientLogger.info('[AI Chatbot] Calling API: /api/ai-chat')
+      
       const response = await fetch('/api/ai-chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: input.trim() })
+        body: JSON.stringify({ message: messageText })
       })
 
-      if (!response.ok) throw new Error('Failed to get response')
+      const duration = Date.now() - startTime
+      clientLogger.info('[AI Chatbot] Response received', { 
+        duration: `${duration}ms`, 
+        status: response.status 
+      })
+
+      if (!response.ok) {
+        clientLogger.error('[AI Chatbot] API error', { 
+          status: response.status, 
+          statusText: response.statusText 
+        })
+        throw new Error('Failed to get response')
+      }
 
       const data = await response.json()
+      clientLogger.info('[AI Chatbot] Response parsed successfully', {
+        responseLength: data.response?.length,
+        requestId: response.headers.get('X-Request-Id'),
+        responseTime: response.headers.get('X-Response-Time'),
+      })
 
       const assistantMessage: Message = {
         role: 'assistant',
@@ -84,7 +113,13 @@ export default function AIWorkbenchFloater() {
 
       setMessages(prev => [...prev, assistantMessage])
     } catch (error) {
-      console.error('Error:', error)
+      const duration = Date.now() - startTime
+      clientLogger.error('[AI Chatbot] Error occurred', {
+        duration: `${duration}ms`,
+        errorMessage: error instanceof Error ? error.message : String(error),
+        errorType: error instanceof TypeError ? 'Network/Fetch Error' : 'Unknown Error',
+      })
+      
       const errorMessage: Message = {
         role: 'assistant',
         content: "I apologize, but I encountered an error. Please try again.",
@@ -93,10 +128,12 @@ export default function AIWorkbenchFloater() {
       setMessages(prev => [...prev, errorMessage])
     } finally {
       setIsLoading(false)
+      clientLogger.info('[AI Chatbot] Request cycle complete')
     }
   }
 
   const handleSuggestedQuestion = (question: string) => {
+    clientLogger.info('[AI Chatbot] Suggested question selected', { question })
     setInput(question)
   }
 
