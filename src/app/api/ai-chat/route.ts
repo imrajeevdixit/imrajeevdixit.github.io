@@ -2,8 +2,24 @@ import { NextRequest, NextResponse } from 'next/server'
 import { GoogleGenerativeAI } from '@google/generative-ai'
 import { KNOWLEDGE_BASE } from '@/lib/knowledge-base'
 
+// Configure runtime for Vercel
+export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
+
 // Initialize Gemini
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '')
+
+// Handle OPTIONS for CORS preflight
+export async function OPTIONS(request: NextRequest) {
+  return new NextResponse(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
+    },
+  })
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -44,9 +60,16 @@ Response:`
     const response = result.response
     const text = response.text()
 
-    return NextResponse.json({
-      response: text
-    })
+    return NextResponse.json(
+      { response: text },
+      {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'POST, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        },
+      }
+    )
 
   } catch (error) {
     console.error('Error in AI chat:', error)

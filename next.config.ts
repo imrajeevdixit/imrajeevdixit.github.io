@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  output: 'export', 
+  // Remove 'output' to use default Vercel deployment
   images: {
     unoptimized: true,
   },
