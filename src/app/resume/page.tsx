@@ -3,7 +3,7 @@
 import { experienceData, skillsData } from "@/data/portfolio-data"
 import { useTheme } from "next-themes"
 import { useState, useEffect } from "react"
-import { Download, Mail, Phone, Linkedin, Github, Sun, Moon } from "lucide-react"
+import { Download, Mail, Phone, Linkedin, Github, Sun, Moon, Globe2 } from "lucide-react"
 import { BeehiivIcon } from "@/components/beehiiv-icon"
 
 export default function ResumePage() {
@@ -38,7 +38,7 @@ export default function ResumePage() {
             className="flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-all hover:scale-105 shadow-lg"
           >
             <Download size={20} />
-            Download as PDF
+            Download Resume
           </button>
         </div>
 
@@ -76,6 +76,15 @@ export default function ResumePage() {
               >
                 <BeehiivIcon size={16} />
                 theheuristicreport.beehiiv.com
+              </a>
+              <a
+                href="http://rajeevdixit.in/"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 hover:text-indigo-500 transition-colors"
+              >
+                <Globe2 size={16} />
+                rajeevdixit.in
               </a>
             </div>
           </div>
