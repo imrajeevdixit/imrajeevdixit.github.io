@@ -51,20 +51,80 @@ export default function ResumePage() {
               Cloud Architect | Engineering Manager | AI & Platform Engineering Leader
             </p>
 
-            <div className={`flex flex-wrap gap-4 ${isDark ? 'text-slate-300' : 'text-slate-600'} text-sm`}>
-              <a href="mailto:rajeevdixit05@outlook.com" className="flex items-center gap-2 hover:text-indigo-500 transition-colors">
+            <div
+              className={`
+                flex flex-wrap gap-3 text-sm
+                ${isDark ? 'text-slate-300' : 'text-slate-600'}
+              `}
+            >
+              <a
+                href="mailto:rajeevdixit05@outlook.com"
+                className={`
+                  flex items-center gap-2 rounded-full px-3 py-1 transition-colors border
+                  ${isDark
+                    ? 'bg-slate-900/40 border-slate-700 hover:bg-slate-800/80 hover:text-indigo-400'
+                    : 'bg-white/80 border-slate-200 hover:bg-white hover:text-indigo-500 shadow-sm'
+                  }
+                `}
+              >
                 <Mail size={16} />
                 rajeevdixit05@outlook.com
               </a>
-              <a href="tel:+919460121450" className="flex items-center gap-2 hover:text-indigo-500 transition-colors">
+              <a
+                href="tel:+919460121450"
+                className={`
+                  flex items-center gap-2 rounded-full px-3 py-1 transition-colors border
+                  ${isDark
+                    ? 'bg-slate-900/40 border-slate-700 hover:bg-slate-800/80 hover:text-indigo-400'
+                    : 'bg-white/80 border-slate-200 hover:bg-white hover:text-indigo-500 shadow-sm'
+                  }
+                `}
+              >
                 <Phone size={16} />
                 +91-9460121450
               </a>
-              <a href="https://www.linkedin.com/in/imrajeevdixit/" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-indigo-500 transition-colors">
+              <a
+                href="http://rajeevdixit.in/"
+                target="_blank"
+                rel="noreferrer"
+                className={`
+                  flex items-center gap-2 rounded-full px-3 py-1 transition-colors border
+                  ${isDark
+                    ? 'bg-slate-900/40 border-slate-700 hover:bg-slate-800/80 hover:text-indigo-400'
+                    : 'bg-white/80 border-slate-200 hover:bg-white hover:text-indigo-500 shadow-sm'
+                  }
+                `}
+              >
+                <Globe2 size={16} />
+                rajeevdixit.in
+              </a>
+              <a
+                href="https://www.linkedin.com/in/imrajeevdixit/"
+                target="_blank"
+                rel="noreferrer"
+                className={`
+                  flex items-center gap-2 rounded-full px-3 py-1 transition-colors border
+                  ${isDark
+                    ? 'bg-slate-900/40 border-slate-700 hover:bg-slate-800/80 hover:text-indigo-400'
+                    : 'bg-white/80 border-slate-200 hover:bg-white hover:text-indigo-500 shadow-sm'
+                  }
+                `}
+              >
                 <Linkedin size={16} />
                 linkedin.com/in/imrajeevdixit
               </a>
-              <a href="https://github.com/imrajeevdixit" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-indigo-500 transition-colors">
+              <a
+                href="https://github.com/imrajeevdixit"
+                target="_blank"
+                rel="noreferrer"
+                className={`
+                  flex items-center gap-2 rounded-full px-3 py-1 transition-colors border
+                  ${isDark
+                    ? 'bg-slate-900/40 border-slate-700 hover:bg-slate-800/80 hover:text-indigo-400'
+                    : 'bg-white/80 border-slate-200 hover:bg-white hover:text-indigo-500 shadow-sm'
+                  }
+                `}
+              >
                 <Github size={16} />
                 github.com/imrajeevdixit
               </a>
@@ -72,19 +132,16 @@ export default function ResumePage() {
                 href="https://theheuristicreport.beehiiv.com/"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-2 hover:text-indigo-500 transition-colors"
+                className={`
+                  flex items-center gap-2 rounded-full px-3 py-1 transition-colors border
+                  ${isDark
+                    ? 'bg-slate-900/40 border-slate-700 hover:bg-slate-800/80 hover:text-indigo-400'
+                    : 'bg-white/80 border-slate-200 hover:bg-white hover:text-indigo-500 shadow-sm'
+                  }
+                `}
               >
                 <BeehiivIcon size={16} />
                 theheuristicreport.beehiiv.com
-              </a>
-              <a
-                href="http://rajeevdixit.in/"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 hover:text-indigo-500 transition-colors"
-              >
-                <Globe2 size={16} />
-                rajeevdixit.in
               </a>
             </div>
           </div>
