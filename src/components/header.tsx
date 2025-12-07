@@ -96,11 +96,15 @@ export function Header() {
             <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-full blur-md animate-pulse"></div>
             <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-indigo-500/30 shadow-lg hover:scale-110 transition-transform duration-300">
               <Image
-                src="/images/profile.png"
+                src="/images/profile.webp"
                 alt="Rajeev Dixit"
-                fill
-                className="object-cover object-top"
+                width={48}
+                height={48}
+                className="object-cover object-top rounded-full"
                 priority
+                quality={85}
+                placeholder="blur"
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
               />
             </div>
           </div>
