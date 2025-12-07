@@ -6,6 +6,7 @@ import { navLinks } from '@/data/portfolio-data'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 
 export function Header() {
   const { theme, setTheme } = useTheme()
@@ -31,10 +32,16 @@ export function Header() {
   const isDark = theme === 'dark'
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-      setIsMobileMenuOpen(false)
+    // If we're on the home page, scroll to the section
+    if (pathname === '/') {
+      const element = document.getElementById(id)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+        setIsMobileMenuOpen(false)
+      }
+    } else {
+      // If we're on another page, navigate to home page with hash
+      window.location.href = `/#${id}`
     }
   }
 
@@ -50,12 +57,12 @@ export function Header() {
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? `${themeClasses.navBg} backdrop-blur-md border-b ${themeClasses.border} py-4` : 'bg-transparent py-6'}`}>
       <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
-        <div
+        <Link
+          href="/"
           className={`text-2xl font-bold ${themeClasses.textHeader} tracking-tight cursor-pointer hover:scale-105 transition-transform duration-300`}
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           Rajeev Dixit<span className="text-indigo-500">.</span>
-        </div>
+        </Link>
 
         <div className="hidden md:flex gap-8 items-center">
           {navLinks.map((link) => (
@@ -76,6 +83,10 @@ export function Header() {
           >
             {isDark ? <Sun size={20} /> : <Moon size={20} />}
           </button>
+
+          <a href="/roadmaps" className={`px-4 py-2 text-sm font-medium text-purple-500 border border-purple-500/30 rounded-full ${isDark ? 'hover:bg-purple-500/10' : 'hover:bg-purple-50'} transition-all hover:scale-105 active:scale-95`}>
+            Roadmaps
+          </a>
 
           <a href="/resume" className={`px-4 py-2 text-sm font-medium text-indigo-500 border border-indigo-500/30 rounded-full ${isDark ? 'hover:bg-indigo-500/10' : 'hover:bg-indigo-50'} transition-all hover:scale-105 active:scale-95`}>
             Resume
@@ -119,11 +130,21 @@ export function Header() {
               {link.name}
             </button>
           ))}
-          
+
+          {/* Roadmaps Link */}
+          <a
+            href="/roadmaps"
+            className={`text-left text-lg font-medium text-purple-500 border-t ${themeClasses.border} pt-4 ${themeClasses.accentHover} transition-colors flex items-center gap-2`}
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            <span>Roadmaps</span>
+            <span className="text-xs px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-500">Explore</span>
+          </a>
+
           {/* Resume Link */}
-          <a 
-            href="/resume" 
-            className={`text-left text-lg font-medium text-indigo-500 border-t ${themeClasses.border} pt-4 ${themeClasses.accentHover} transition-colors flex items-center gap-2`}
+          <a
+            href="/resume"
+            className={`text-left text-lg font-medium text-indigo-500 ${themeClasses.accentHover} transition-colors flex items-center gap-2`}
             onClick={() => setIsMobileMenuOpen(false)}
           >
             <span>Resume</span>
