@@ -3,7 +3,7 @@
 import { FadeInSection } from "@/components/fade-in-section"
 import { skillsData } from "@/data/portfolio-data"
 import { useTheme } from "next-themes"
-import { Briefcase, Zap, Cloud, Terminal, Sparkles } from "lucide-react"
+import { Briefcase, Zap, Cloud, Code, Database, Sparkles } from "lucide-react"
 import { useState, useEffect } from "react"
 
 export default function Skills() {
@@ -23,21 +23,24 @@ export default function Skills() {
     "Strategic AI Leadership": Briefcase,
     "Gen AI & LLM Stack": Zap,
     "Architecture & Cloud": Cloud,
-    "Core Tech & Data": Terminal
+    "Programming & Frameworks": Code,
+    "Data & Storage": Database
   };
 
   const categoryColors: Record<string, string> = {
     "Strategic AI Leadership": "text-indigo-500",
     "Gen AI & LLM Stack": "text-yellow-500",
     "Architecture & Cloud": "text-blue-500",
-    "Core Tech & Data": "text-green-500"
+    "Programming & Frameworks": "text-purple-500",
+    "Data & Storage": "text-emerald-500"
   };
 
   const categoryGradients: Record<string, string> = {
     "Strategic AI Leadership": "from-indigo-500/10 to-purple-500/10",
     "Gen AI & LLM Stack": "from-yellow-500/10 to-orange-500/10",
     "Architecture & Cloud": "from-blue-500/10 to-cyan-500/10",
-    "Core Tech & Data": "from-green-500/10 to-emerald-500/10"
+    "Programming & Frameworks": "from-purple-500/10 to-pink-500/10",
+    "Data & Storage": "from-emerald-500/10 to-green-500/10"
   };
 
   return (

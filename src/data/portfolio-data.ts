@@ -29,11 +29,16 @@ export const skillsData = {
   ],
   "Architecture & Cloud": [
     "Distributed Systems", "Event-Driven Architecture", "Microservices Patterns",
-    "Azure OpenAI / AI Search", "AWS / GCP", "Kubernetes", "High-Scale System Design"
+    "Azure OpenAI / AI Search", "AWS / GCP / Azure", "Docker / Kubernetes",
+    "Apache Kafka", "CI/CD Pipelines", "High-Scale System Design"
   ],
-  "Core Tech & Data": [
-    "Python", "Go", "TypeScript/Node.js", "FastAPI / Spring Boot",
-    "React.js / Next.js", "Vector DBs (Pinecone/Weaviate)", "PostgreSQL", "Redis"
+  "Programming & Frameworks": [
+    "Python", "Go", "Java", "JavaScript / TypeScript", "Node.js / Express.js",
+    "React.js / Next.js", "Spring Boot / Dropwizard", "FastAPI / Flask"
+  ],
+  "Data & Storage": [
+    "PostgreSQL", "MongoDB", "Redis", "Aerospike", "ElasticSearch",
+    "Vector DBs (Pinecone/Weaviate)", "SQL / NoSQL", "Data Pipelines"
   ]
 };
 
