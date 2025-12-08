@@ -5,7 +5,7 @@ import { useTheme } from 'next-themes'
 import { FadeInSection } from '@/components/fade-in-section'
 import {
   BookOpen, Brain, Cpu, Rocket, Briefcase,
-  TrendingUp, DollarSign, Layers, Terminal, Database,
+  TrendingUp, Layers, Terminal, Database,
   Cloud, Activity, ChevronRight, Book, MonitorPlay,
   ExternalLink, Sparkles
 } from 'lucide-react'
@@ -17,7 +17,6 @@ const ARCHETYPES = {
     id: 'ai-engineer',
     title: 'AI Engineer',
     icon: Brain,
-    salary: '₹15 - 30 LPA',
     focus: 'End-to-End Intelligent Systems',
     desc: 'Builds comprehensive AI solutions (chatbots, vision systems) simulating human intelligence.',
     tools: ["PyTorch", "LangChain", "OpenCV", "GPT APIs"],
@@ -29,7 +28,6 @@ const ARCHETYPES = {
     id: 'ml-engineer',
     title: 'ML Engineer',
     icon: Cpu,
-    salary: '₹12 - 22 LPA',
     focus: 'Model Optimization & Scale',
     desc: 'Focuses on productionizing models, MLOps, and ensuring scalability and performance.',
     tools: ["TensorFlow", "Docker", "Kubernetes", "AWS SageMaker"],
@@ -41,7 +39,6 @@ const ARCHETYPES = {
     id: 'data-scientist',
     title: 'Data Scientist',
     icon: Activity,
-    salary: '₹10 - 18 LPA',
     focus: 'Insights & Math',
     desc: 'Extracts actionable insights from data using statistical methods and ML algorithms.',
     tools: ["Pandas", "Scikit-learn", "Tableau", "SQL"],
@@ -53,7 +50,6 @@ const ARCHETYPES = {
     id: 'ai-generalist',
     title: 'AI Generalist',
     icon: Layers,
-    salary: '₹8 - 20 LPA',
     focus: 'Applied AI & Strategy',
     desc: 'Leverages pre-built tools and APIs to solve business problems without deep model building.',
     tools: ["Prompt Eng.", "RAG", "No-Code AI", "Zapier"],
@@ -318,7 +314,7 @@ export default function Roadmaps() {
               <Sparkles className="text-purple-500 animate-pulse" size={32} />
             </div>
             <p className={`${isDark ? 'text-slate-400' : 'text-slate-600'} max-w-2xl mx-auto`}>
-              Comprehensive learning paths for AI careers in the Indian tech ecosystem - 2025 Edition
+              Comprehensive learning paths and resources to guide your journey into AI careers
             </p>
           </div>
         </FadeInSection>
@@ -362,36 +358,6 @@ export default function Roadmaps() {
         {/* CAREER LANDSCAPE VIEW */}
         {activeTab === 'landscape' && (
           <div className="space-y-12">
-            {/* Market Stats */}
-            <FadeInSection delay={200}>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                <div className={`${isDark ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200'} p-6 rounded-2xl border shadow-lg`}>
-                  <div className="flex items-center space-x-3 mb-2">
-                    <TrendingUp className="text-green-400" size={24} />
-                    <h3 className={`font-bold ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>Market Growth (India)</h3>
-                  </div>
-                  <p className="text-3xl font-bold text-white">30%+</p>
-                  <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'} mt-1`}>YoY Job Growth in AI</p>
-                </div>
-                <div className={`${isDark ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200'} p-6 rounded-2xl border shadow-lg`}>
-                  <div className="flex items-center space-x-3 mb-2">
-                    <DollarSign className="text-yellow-400" size={24} />
-                    <h3 className={`font-bold ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>Top Tier Salary</h3>
-                  </div>
-                  <p className="text-3xl font-bold text-white">₹30 LPA+</p>
-                  <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'} mt-1`}>For Exp. AI Engineers</p>
-                </div>
-                <div className={`${isDark ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200'} p-6 rounded-2xl border shadow-lg`}>
-                  <div className="flex items-center space-x-3 mb-2">
-                    <Briefcase className="text-blue-400" size={24} />
-                    <h3 className={`font-bold ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>Entry Level</h3>
-                  </div>
-                  <p className="text-3xl font-bold text-white">₹8-12 LPA</p>
-                  <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'} mt-1`}>Starting Packages</p>
-                </div>
-              </div>
-            </FadeInSection>
-
             {/* Role Cards */}
             <FadeInSection delay={300}>
               <div>
@@ -408,8 +374,7 @@ export default function Roadmaps() {
                         <div className={`mb-4 ${role.iconColor} group-hover:scale-110 transition-transform`}>
                           <IconComponent size={32} />
                         </div>
-                        <h4 className={`text-xl font-bold mb-1 ${isDark ? 'text-white' : 'text-slate-900'}`}>{role.title}</h4>
-                        <p className="text-sm text-green-400 font-mono mb-2 font-semibold">{role.salary}</p>
+                        <h4 className={`text-xl font-bold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>{role.title}</h4>
                         <p className="text-xs uppercase tracking-wider text-slate-500 font-bold mb-3">{role.focus}</p>
                         <p className={`text-sm ${isDark ? 'text-slate-300' : 'text-slate-600'} mb-4 flex-grow`}>{role.desc}</p>
                         <div className="flex flex-wrap gap-2 mt-auto">
@@ -547,7 +512,7 @@ export default function Roadmaps() {
               <div className="text-center mb-10">
                 <h3 className={`text-3xl font-bold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>Build to Get Hired</h3>
                 <p className={`${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-                  Tailored projects for <span className="text-indigo-400 font-semibold">{ARCHETYPES[selectedArchetype].title}</span> roles in India.
+                  Tailored projects to build your portfolio for <span className="text-indigo-400 font-semibold">{ARCHETYPES[selectedArchetype].title}</span> roles.
                 </p>
               </div>
             </FadeInSection>
@@ -582,7 +547,7 @@ export default function Roadmaps() {
                   Career Projections
                 </h3>
                 <p className={`${isDark ? 'text-slate-300' : 'text-slate-700'} mb-2`}>
-                  Typical career ladder for this role in the Indian market:
+                  Typical career progression path for this role:
                 </p>
                 <div className="flex items-center text-indigo-300 font-medium bg-indigo-900/20 p-4 rounded-lg border border-indigo-500/20">
                   {ARCHETYPES[selectedArchetype].projections}
